@@ -2,7 +2,7 @@
   description = "NixOS configuration flake for all my machines";
 
   nixConfig = {
-    substituters = [
+    trusted-substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
     ];
