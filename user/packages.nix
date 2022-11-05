@@ -39,8 +39,9 @@
     gcc
     automake
     autoconf
+    gnumake
 
-   # Fonts
+    # Fonts
     nerdfonts
     symbola
   ];
