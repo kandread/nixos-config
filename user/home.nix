@@ -11,6 +11,7 @@
   imports = [
     ./programs.nix
     ./packages.nix
+    ./emacs.nix
   ];
 
 }

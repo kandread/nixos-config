@@ -36,6 +36,9 @@
     pkgs = import nixpkgs {
       inherit system;
       config = { allowUnfree = true; };
+      overlays = [
+        emacs.overlay
+      ];
     };
   in {
     nixosConfigurations = {
