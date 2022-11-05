@@ -2,7 +2,7 @@
   description = "NixOS configuration flake for all my machines";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.05";
+    nixpkgs.url = "nixpkgs/nixos-unstable";
     
     nixos-hardware.url = github:nixos/nixos-hardware/master;
 
