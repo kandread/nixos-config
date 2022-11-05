@@ -38,7 +38,7 @@
       };
     };
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      inherit system username;
+      inherit system username pkgs;
       configuration = import ./user/home.nix;
       homeDirectory = "/home/${username}";
       stateVersion = "22.05";
