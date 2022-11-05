@@ -38,5 +38,6 @@
    # Fonts
     nerdfonts
     symbola
+  ];
 
 }
