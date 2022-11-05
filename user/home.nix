@@ -8,4 +8,8 @@
     stateVersion = "22.05";
   };
 
+  imports = [
+    ./programs.nix
+  ];
+
 }
