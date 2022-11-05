@@ -2,7 +2,7 @@
   description = "NixOS configuration flake for all my machines";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "nixpkgs/nixos-22.05";
     
     nixos-hardware.url = github:nixos/nixos-hardware/master;
 
@@ -11,7 +11,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -38,10 +38,10 @@
       };
     };
     homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./user/home.nix
-        ];
+      inherit system username;
+      configuration = import ./user/home.nix;
+      homeDirectory = "/home/${username}";
+      stateVersion = "22.05";
       };
   };
 }

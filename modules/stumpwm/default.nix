@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 # for singleton
 with lib;
@@ -7,9 +7,8 @@ let
   cfg = config.services.xserver.windowManager;
   stumpwm-wrapper = (
     # based on https://github.com/lihebi/nixos/blob/master/pkgs/stumpwm-wrapper.nix
-    with import <nixpkgs> {};
 
-    stdenv.mkDerivation rec {
+    pkgs.stdenv.mkDerivation rec {
       pname = "stumpwm-wrapper";
       version = "0.0.1";
       unpackPhase = "true";
@@ -33,7 +32,7 @@ let
       mkdir -p "$(dirname "$script")"
       touch "$script"
       chmod a+x "$script"
-      echo "#! ${stdenv.shell}" >> "$script"
+      echo "#! ${pkgs.stdenv.shell}" >> "$script"
       echo "source ${pkgs.lispPackages.stumpwm}/lib/common-lisp-settings/stumpwm-shell-config.sh" >> "$script"
       echo "source ${pkgs.lispPackages.clx-truetype}/lib/common-lisp-settings/clx-truetype-shell-config.sh" >> "$script"
       echo "source ${pkgs.lispPackages.swank}/lib/common-lisp-settings/swank-shell-config.sh" >> "$script"
