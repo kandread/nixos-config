@@ -20,7 +20,7 @@
 
   let
     system = "x86_64-linux";
-    user = "kandread";
+    username = "kandread";
 
     pkgs = import nixpkgs {
       inherit system;
@@ -37,5 +37,11 @@
           ];
       };
     };
+    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./user/home.nix
+        ];
+      };
   };
 }
