@@ -15,6 +15,7 @@
       };
       aliases = {
         s = "status";
+        a = "add";
         f = "fetch";
         c = "commit -m";
         k = "checkout";
