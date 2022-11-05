@@ -3,6 +3,11 @@
   home.packages = with pkgs; [
     # Editors
     vim
+    
+    # Writing
+    libreoffice-fresh
+    pandoc
+    texlive.combined.scheme-full
 
     # Web
     firefox
