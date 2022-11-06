@@ -13,6 +13,7 @@
     ./packages.nix
     ./emacs.nix
     ./shells.nix
+    ./email.nix
   ];
 
 }
