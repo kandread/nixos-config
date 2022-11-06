@@ -69,7 +69,7 @@
       aliases = [ "andreadis.jhm@ametsoc.org" ];
       userName = "kandread@umass.edu";
       realName = "Kostas Andreadis";
-      passwordCommand = "cat ${config.age.secrets.umass.path}";
+      passwordCommand = "cat /run/secrets/umass";
       imap = {
         host = "localhost";
         port = 1143;

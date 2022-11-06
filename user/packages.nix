@@ -15,6 +15,7 @@
     
     # Communication
     zoom-us
+    davmail
 
     # Shells
     any-nix-shell
