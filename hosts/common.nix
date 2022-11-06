@@ -43,7 +43,10 @@
   services.printing.enable = true;
 
   # Enable Davmail
-  services.davmail.enable = true;
+  services.davmail = {
+    enable = true;
+    url = "https://outlook.office365.com/EWS/Exchange.asmx";
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;
