@@ -6,6 +6,16 @@ programs.fish = {
   interactiveShellInit = ''
     starship init fish | source
   '';
+  shellAliases = {
+    ls = "exa";
+    tree = "exa -T";
+    cat = "bat --style=plain";
+    m = "mkdir -p";
+    fcd = "cd $(fd --type d | fzf)";
+    grep = "rg";
+    ".." = "cd ..";
+    "..." = "cd ../..";
+  };
 };
 
 programs.starship = {
