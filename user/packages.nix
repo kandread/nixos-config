@@ -5,6 +5,7 @@
     vim
     
     # Writing
+    (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     libreoffice-fresh
     pandoc
     texlive.combined.scheme-full
