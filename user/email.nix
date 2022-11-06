@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  services.davmail.enable = true;
-  
+ 
   programs = {
     mbsync.enable = true;
     msmtp.enable = true;

@@ -42,6 +42,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable Davmail
+  services.davmail.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
