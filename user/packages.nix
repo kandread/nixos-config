@@ -11,7 +11,7 @@
     texlive.combined.scheme-full
 
     # Web
-    firefox
+    brave
     
     # Communication
     zoom-us
