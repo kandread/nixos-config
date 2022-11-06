@@ -15,7 +15,7 @@
     
     # Communication
     zoom-us
-    davmail
+    unstable.davmail
 
     # Shells
     any-nix-shell
