@@ -14,6 +14,8 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-22.05";
+
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     
     nixos-hardware.url = github:nixos/nixos-hardware/master;
 
@@ -29,7 +31,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, emacs, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, unstable, emacs, agenix, ... }@inputs:
 
     let
       system = "x86_64-linux";
@@ -39,6 +41,7 @@
         inherit system;
         config = { allowUnfree = true; };
         overlays = [
+          (import ./overlays { unstable = unstable; })
           emacs.overlay
         ];
       };
