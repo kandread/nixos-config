@@ -14,7 +14,7 @@ programs.starship = {
 
  programs.kitty = {
     enable = true;
-    # theme = "Brogrammer";
+    theme = "ayu";
     font = {
       name = "Roboto Nerd Mono";
       size = 13;
