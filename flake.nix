@@ -17,6 +17,8 @@
     
     nixos-hardware.url = github:nixos/nixos-hardware/master;
 
+    inputs.agenix.url = "github:ryantm/agenix";
+    
     emacs = {
       url = "github:nix-community/emacs-overlay/";
     };
@@ -47,6 +49,7 @@
 
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-t495
+            agenix.nixosModule
             ./hosts/amdgland
           ];
       };
