@@ -12,6 +12,7 @@
     ./programs.nix
     ./packages.nix
     ./emacs.nix
+    ./shells.nix
   ];
 
 }
