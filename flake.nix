@@ -17,7 +17,7 @@
     
     nixos-hardware.url = github:nixos/nixos-hardware/master;
 
-    inputs.agenix.url = "github:ryantm/agenix";
+    agenix.url = "github:ryantm/agenix";
     
     emacs = {
       url = "github:nix-community/emacs-overlay/";
@@ -29,22 +29,22 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, emacs, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, emacs, agenix, ... }@inputs:
 
-  let
-    system = "x86_64-linux";
-    username = "kandread";
+    let
+      system = "x86_64-linux";
+      username = "kandread";
 
-    pkgs = import nixpkgs {
-      inherit system;
-      config = { allowUnfree = true; };
-      overlays = [
-        emacs.overlay
-      ];
-    };
-  in {
-    nixosConfigurations = {
-      amdgland = nixpkgs.lib.nixosSystem {
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+        overlays = [
+          emacs.overlay
+        ];
+      };
+    in {
+      nixosConfigurations = {
+        amdgland = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
 
           modules = [
@@ -52,13 +52,13 @@
             agenix.nixosModule
             ./hosts/amdgland
           ];
+        };
+      };
+      homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
+        inherit system username pkgs;
+        configuration = import ./user/home.nix;
+        homeDirectory = "/home/${username}";
+        stateVersion = "22.05";
       };
     };
-    homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-      inherit system username pkgs;
-      configuration = import ./user/home.nix;
-      homeDirectory = "/home/${username}";
-      stateVersion = "22.05";
-      };
-  };
 }
