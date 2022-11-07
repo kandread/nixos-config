@@ -4,5 +4,7 @@ My NixOS configuration in a flake. For now I'm using the latest stable release o
 - `hosts`: common and specific configuration for my different machines
 - `modules`: custom NixOS modules
 - `user`: home-manager and program configuration
+- `secrets`: contains age-encrypted passwords managed with [agenix](https://github.com/ryantm/agenix)
+- `overlays`: override package settings with overlays
 
 
