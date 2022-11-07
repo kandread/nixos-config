@@ -12,6 +12,7 @@
 
     # Web
     brave
+    unstable.firefox
     
     # Communication
     zoom-us
