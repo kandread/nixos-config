@@ -115,6 +115,17 @@
      systemd.services.squeezelite.serviceConfig.ExecStart = let cfg = config.services.squeezelite;
                                                             in lib.mkForce "${pkgs.squeezelite}/bin/squeezelite -n ${config.networking.hostName} ${cfg.extraArguments}";
 
+# Davmail
+  systemd.user.services.davmail = {
+    description = "Davmail daemon";
+    serviceConfig = {
+      ExecStart = "${pkgs.unstable.davmail}/bin/davmail";
+      Restart = "on-failure";
+    };
+    path = [ pkgs.unstable.davmail ];
+    enable = true;
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
