@@ -39,7 +39,9 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+        };
         overlays = [
           (import ./overlays { unstable = unstable; })
           emacs.overlay

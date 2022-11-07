@@ -5,6 +5,7 @@ programs.fish = {
   enable = true;
   interactiveShellInit = ''
     starship init fish | source
+    any-nix-shell fish --info-right | source
   '';
   shellAliases = {
     ls = "exa";

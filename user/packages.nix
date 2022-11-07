@@ -16,6 +16,7 @@
     
     # Communication
     zoom-us
+    unstable.mattermost-desktop
 
     # Shells
     any-nix-shell
@@ -42,6 +43,7 @@
     automake
     autoconf
     gnumake
+    any-nix-shell
 
     # Fonts
     nerdfonts
