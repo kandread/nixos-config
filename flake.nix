@@ -62,6 +62,16 @@
             ./hosts/amdgland
           ];
         };
+
+        thingland = nixpkgs.lib.nixosSystem {
+          inherit pkgs system;
+
+          modules = [
+            nixos-hardware.nixosModules.lenovo-thinkpad-p53
+            (import ./modules/secrets)
+            ./hosts/thingland
+          ];
+        };
       };
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit system username pkgs;
