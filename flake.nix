@@ -52,7 +52,7 @@
 
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-t495
-            agenix.nixosModule.age
+            agenix.nixosModules.age
             ./hosts/amdgland
           ];
         };
