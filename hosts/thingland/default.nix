@@ -4,9 +4,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware.nix
-      ../services.nix
-      ../common.nix
+       ../common.nix
     ];
+
+  boot.loader.efi.efiSysMountPoint = "/boot/EFI";
 
   # fix for recognizing webcam (https://forums.linuxmint.com/viewtopic.php?t=339218)
   boot.extraModprobeConfig = ''

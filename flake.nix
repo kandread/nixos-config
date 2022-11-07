@@ -52,13 +52,7 @@
 
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-t495
-            agenix.nixosModule
-            {
-              age.secrets.umass = {
-                owner = "kandread";
-                path = "/run/secrets/umass";
-                file = ./secrets/umass.age; };
-            }
+            agenix.nixosModule.age
             ./hosts/amdgland
           ];
         };
@@ -68,7 +62,7 @@
 
           modules = [
             nixos-hardware.nixosModules.lenovo-thinkpad-p53
-            (import ./modules/secrets)
+            agenix.nixosModules.age
             ./hosts/thingland
           ];
         };

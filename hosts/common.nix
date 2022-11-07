@@ -5,7 +5,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -19,6 +18,7 @@
   # Imports
   imports = [
     ../modules/stumpwm
+    ../modules/secrets
   ];
 
   # Enable the X11 windowing system.

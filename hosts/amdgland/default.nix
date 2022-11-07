@@ -7,6 +7,8 @@
       ../common.nix
     ];
 
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
   networking.hostName = "amdgland"; # Define your hostname.
 
   # Enable touchpad support (enabled default in most desktopManager).
