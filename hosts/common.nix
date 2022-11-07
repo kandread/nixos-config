@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 
@@ -98,6 +98,22 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+   # Squeezelite
+  services.squeezelite = {
+       enable = true;
+       extraArguments = let
+         lms_ip = "192.168.1.12"; # local IP address for Logitech Media Server
+           in
+             if (config.networking.hostName == "thingland")
+             then
+               "-o front:CARD=TA10R,DEV=0 -s ${lms_ip}"
+             else
+               "-s ${lms_ip}";
+     };
+     # Override the need for player name file
+     systemd.services.squeezelite.serviceConfig.ExecStart = let cfg = config.services.squeezelite;
+                                                            in lib.mkForce "${pkgs.squeezelite}/bin/squeezelite -n ${config.networking.hostName} ${cfg.extraArguments}";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

@@ -22,7 +22,7 @@
     agenix.url = "github:ryantm/agenix";
     
     emacs = {
-      url = "github:nix-community/emacs-overlay/";
+      url = "github:nix-community/emacs-overlay";
     };
 
     home-manager = {
