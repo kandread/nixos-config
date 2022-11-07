@@ -43,7 +43,6 @@
     automake
     autoconf
     gnumake
-    any-nix-shell
 
     # Fonts
     nerdfonts

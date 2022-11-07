@@ -1,29 +1,35 @@
 { pkgs, ... }:
 {
 
-programs.fish = {
-  enable = true;
-  interactiveShellInit = ''
-    starship init fish | source
-    any-nix-shell fish --info-right | source
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
   '';
-  shellAliases = {
-    ls = "exa";
-    tree = "exa -T";
-    cat = "bat --style=plain";
-    m = "mkdir -p";
-    fcd = "cd $(fd --type d | fzf)";
-    grep = "rg";
-    ".." = "cd ..";
-    "..." = "cd ../..";
+    shellAliases = {
+      ls = "exa";
+      tree = "exa -T";
+      cat = "bat --style=plain";
+      m = "mkdir -p";
+      fcd = "cd $(fd --type d | fzf)";
+      grep = "rg";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+    };
   };
-};
 
-programs.starship = {
-  enable = true;
-};
+  programs.starship = {
+    enable = true;
+    enableFishIntegration = true;
+    settings = {
+      "nix_shell" = {
+        impure_msg = "[impure shell](bold red)";
+        pure_msg = "[pure shell](bold green)";
+        format = "via [☃️ $state( \($name\))](bold blue) ";
+      };
+    };
+  };
 
- programs.kitty = {
+  programs.kitty = {
     enable = true;
     theme = "Ayu";
     font = {
