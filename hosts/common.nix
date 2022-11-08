@@ -30,7 +30,7 @@
 
   # Enable Window Managers.
   services.xserver.windowManager = {
-    stumpwm.enable = true;
+    stumpwm-wrapper.enable = true;
   };
 
   # Configure keymap in X11
