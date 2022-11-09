@@ -5,6 +5,15 @@ with lib;
 
 let
   cfg = config.services.xserver.windowManager;
+  stumpwm = pkgs.lispPackages.stumpwm.overrideAttrs (_: {
+    version = "20220523";
+    src = pkgs.fetchFromGitHub {
+      owner = "stumpwm";
+      repo = "stumpwm";
+      rev = "09685fcddc32befcf7a0fbe38df9b0613fc4539b";
+      sha256 = "sha256-Vtn+unRdr3ib3ssjJcKy6P/M50VOo7197BF4fis4Doo=";
+    };
+  });
   stumpwm-wrapper = (
     # based on https://github.com/lihebi/nixos/blob/master/pkgs/stumpwm-wrapper.nix
 
@@ -14,7 +23,7 @@ let
       unpackPhase = "true";
 
       # FIXME propagatedInputs?
-      buildInputs = [ pkgs.lispPackages.stumpwm
+      buildInputs = [ stumpwm
                       pkgs.lispPackages.clwrapper
                       pkgs.lispPackages.swank
                       pkgs.lispPackages.clx-truetype
@@ -33,7 +42,7 @@ let
       touch "$script"
       chmod a+x "$script"
       echo "#! ${pkgs.stdenv.shell}" >> "$script"
-      echo "source ${pkgs.lispPackages.stumpwm}/lib/common-lisp-settings/stumpwm-shell-config.sh" >> "$script"
+      echo "source ${stumpwm}/lib/common-lisp-settings/stumpwm-shell-config.sh" >> "$script"
       echo "source ${pkgs.lispPackages.clx-truetype}/lib/common-lisp-settings/clx-truetype-shell-config.sh" >> "$script"
       echo "source ${pkgs.lispPackages.swank}/lib/common-lisp-settings/swank-shell-config.sh" >> "$script"
       echo "source ${pkgs.lispPackages.xembed}/lib/common-lisp-settings/xembed-shell-config.sh" >> "$script"
