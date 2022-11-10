@@ -25,7 +25,7 @@ let
       # FIXME propagatedInputs?
       buildInputs = [ stumpwm
                       pkgs.lispPackages.clwrapper
-                      pkgs.lispPackages.swank
+                      pkgs.lispPackages.slynk
                       pkgs.lispPackages.clx-truetype
                       pkgs.lispPackages.xembed ];
 
@@ -44,7 +44,7 @@ let
       echo "#! ${pkgs.stdenv.shell}" >> "$script"
       echo "source ${stumpwm}/lib/common-lisp-settings/stumpwm-shell-config.sh" >> "$script"
       echo "source ${pkgs.lispPackages.clx-truetype}/lib/common-lisp-settings/clx-truetype-shell-config.sh" >> "$script"
-      echo "source ${pkgs.lispPackages.swank}/lib/common-lisp-settings/swank-shell-config.sh" >> "$script"
+      echo "source ${pkgs.lispPackages.slynk}/lib/common-lisp-settings/slynk-shell-config.sh" >> "$script"
       echo "source ${pkgs.lispPackages.xembed}/lib/common-lisp-settings/xembed-shell-config.sh" >> "$script"
       echo '"${pkgs.lispPackages.clwrapper}/bin/common-lisp.sh" --quit --eval "(require :stumpwm)" --eval "(stumpwm:stumpwm)"' >> "$script"
       '';
