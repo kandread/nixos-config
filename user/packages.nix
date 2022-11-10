@@ -20,7 +20,10 @@
 
     # Shells
     any-nix-shell
-    zsh
+
+    # Graphics
+    feh
+    imagemagick
 
     # Utilities
     gnupg
