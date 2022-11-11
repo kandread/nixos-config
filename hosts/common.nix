@@ -126,6 +126,16 @@
     enable = true;
   };
 
+  # Syncthing
+  services.syncthing = {
+    enable = true;
+    user = "kandread";
+    dataDir = "/home/kandread";
+    configDir = "/home/kandread/.config/syncthing";
+    overrideDevices = true; # overrides any devices added or deleted through the WebUI
+    overrideFolders = true; # overrides any folders added or deleted through the WebUI
+  };
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
