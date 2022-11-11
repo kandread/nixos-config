@@ -145,6 +145,10 @@
     folders = {
       "/home/kandread/Documents/Notes" = {
         devices = [ "amdgland" "thingland" ];
+        versioning = {
+          type = "trashcan";
+          params.cleanoutDays = "30";
+        };
       };
     };
   };
