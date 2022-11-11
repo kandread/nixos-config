@@ -11,7 +11,7 @@
     texlive.combined.scheme-full
 
     # Web
-    brave
+    unstable.brave
     unstable.firefox
     
     # Communication
