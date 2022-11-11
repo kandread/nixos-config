@@ -135,16 +135,18 @@
     overrideDevices = true; # overrides any devices added or deleted through the WebUI
     overrideFolders = true; # overrides any folders added or deleted through the WebUI
     devices = {
-      amdgland = "FMQGAEU-WJYVCFG-AI63QN5-DX6WVZA-T4SOYCO-RQ3TXZX-YXIZDY7-WARJAAS";
-      thingland = "MOEAIAA-6O3V7X7-VGZNOAK-EJDJDLD-4Q5TZHK-PLRE7HY-Y3HV3T4-X6FANAQ";
-    };
-    let device_names = [ "amdgland" "thingland" ]
-    in
-      folders = {
-        "/home/kandread/Documents/Notes" = {
-          devices = device_names;
-        };
+      amdgland = {
+        id = "FMQGAEU-WJYVCFG-AI63QN5-DX6WVZA-T4SOYCO-RQ3TXZX-YXIZDY7-WARJAAS";
       };
+      thingland = {
+        id = "MOEAIAA-6O3V7X7-VGZNOAK-EJDJDLD-4Q5TZHK-PLRE7HY-Y3HV3T4-X6FANAQ";
+      };
+    };
+    folders = {
+      "/home/kandread/Documents/Notes" = {
+        devices = [ "amdgland" "thingland" ];
+      };
+    };
   };
 
   # Open ports in the firewall.
