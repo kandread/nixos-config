@@ -150,6 +150,13 @@
           params.cleanoutDays = "30";
         };
       };
+      "/home/kandread/Documents/Org" = {
+        devices = [ "amdgland" "thingland" ];
+        versioning = {
+          type = "trashcan";
+          params.cleanoutDays = "30";
+        };
+      };
     };
   };
 
