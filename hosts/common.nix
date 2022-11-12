@@ -58,10 +58,10 @@
         "default.clock.allowed-rates" = [ 44100 48000 88200 96000 192000 ];
       };
     };
-    wireplumber.enable = false;
+    wireplumber.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
-      # no need to redefine it in your config for now)
+    # no need to redefine it in your config for now)
     #media-session.enable = true;
   };
 
@@ -101,19 +101,19 @@
 
    # Squeezelite
   services.squeezelite = {
-       enable = true;
-       extraArguments = let
-         lms_ip = "192.168.1.12"; # local IP address for Logitech Media Server
-           in
-             if (config.networking.hostName == "thingland")
-             then
-               "-o front:CARD=TA10R,DEV=0 -s ${lms_ip}"
-             else
-               "-s ${lms_ip}";
+    enable = true;
+    extraArguments = let
+      lms_ip = "192.168.1.12"; # local IP address for Logitech Media Server
+    in
+      if (config.networking.hostName == "thingland")
+      then
+        "-o front:CARD=TA10R,DEV=0 -s ${lms_ip}"
+      else
+        "-o sysdefault:CARD=Generic_1 -s ${lms_ip}";
      };
-     # Override the need for player name file
-     systemd.services.squeezelite.serviceConfig.ExecStart = let cfg = config.services.squeezelite;
-                                                            in lib.mkForce "${pkgs.squeezelite}/bin/squeezelite -n ${config.networking.hostName} ${cfg.extraArguments}";
+  # Override the need for player name file
+  systemd.services.squeezelite.serviceConfig.ExecStart = let cfg = config.services.squeezelite;
+                                                         in lib.mkForce "${pkgs.squeezelite}/bin/squeezelite -n ${config.networking.hostName} ${cfg.extraArguments}";
 
 # Davmail
   systemd.user.services.davmail = {
