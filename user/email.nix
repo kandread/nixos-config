@@ -97,6 +97,7 @@
         enable = true;
         create = "maildir";
         expunge = "both";
+        remove = "both";
         patterns = [ "*" "!Archive1" "!Conversation History" "!Unsent Messages" "!Trash/Trash" "!Trash/Sent" ];
         extraConfig = {
           account = { AuthMech = "LOGIN"; };
