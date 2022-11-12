@@ -40,8 +40,9 @@
     xorg.xmodmap
     xorg.xev
     betterlockscreen
+    picom
 
-   # Development
+    # Development
     gcc
     automake
     autoconf
