@@ -43,22 +43,11 @@
       };
       hooks = {
         postNew = ''
-          notmuch tag +deleted folder:"umass/Trash"
-          notmuch tag +spam folder:"umass/Junk"
-          notmuch tag +archived folder:"umass/Archive"
-          notmuch tag +sent folder:"umass/Sent"
-          notmuch tag +draft folder:"umass/Drafts"
-          notmuch tag +jhm to:andreadis.jhm@ametsoc.org
+          afew -v -n -t
+          afew -v -n -m
         '';
         preNew = ''
         # mbsync -a
-        '';
-        postInsert = ''
-          function safeMove { s=''${1##*/}; s=''${s%%,*}; mv -f ''$1 ''$2/''$s; }
-          for i in ''$(notmuch search --exclude=false --output=files tag:deleted AND NOT folder:"umass/Trash"); do safeMove $i ~/Mail/umass/Trash/cur; done
-          for i in ''$(notmuch search --exclude=false --output=files tag:spam AND NOT folder:"umass/Junk"); do safeMove $i ~/Mail/umass/Junk/cur; done
-          for i in ''$(notmuch search --exclude=false --output=files tag:sent AND NOT folder:"umass/Sent"); do safeMove $i ~/Mail/umass/Sent/cur; done
-          for i in ''$(notmuch search --exclude=false --output=files tag:archived AND NOT folder:"umass/Archive"); do safeMove $i ~/Mail/umass/Archive/cur; done
         '';
       };
     };
