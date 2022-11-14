@@ -14,6 +14,7 @@
     ./emacs.nix
     ./shells.nix
     ./email.nix
+    ./xsession.nix
   ];
 
 }
