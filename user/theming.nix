@@ -2,8 +2,8 @@
 {
   home.pointerCursor = {
     package = pkgs.nordzy-cursor-theme;
-    name = "nordzy";
-    size = 40;
+    name = "Nordzy-cursors";
+    size = 32;
     gtk.enable = true;
     x11 = {
       enable = true;
