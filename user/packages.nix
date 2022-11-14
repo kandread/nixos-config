@@ -21,6 +21,9 @@
     # Shells
     any-nix-shell
 
+    # Science
+    netcdf
+
     # Graphics
     feh
     imagemagick
