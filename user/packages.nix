@@ -28,6 +28,7 @@
     feh
     imagemagick
     obs-studio
+    pulsemixer
 
     # Utilities
     gnupg
