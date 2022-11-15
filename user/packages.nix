@@ -24,9 +24,10 @@
     # Science
     netcdf
 
-    # Graphics
+    # Multimedia
     feh
     imagemagick
+    obs-studio
 
     # Utilities
     gnupg
