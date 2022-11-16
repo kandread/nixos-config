@@ -26,6 +26,10 @@
   # Do not suspend when closing the lid
   services.logind.lidSwitch = "ignore";
 
+  # Explicitly enable bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.xserver.libinput = {
     enable = true;
