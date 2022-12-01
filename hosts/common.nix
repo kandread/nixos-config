@@ -31,6 +31,13 @@
   # Enable Window Managers.
   services.xserver.windowManager = {
     stumpwm-wrapper.enable = true;
+    xmonad = {
+      enable = true;
+      enableContribAndExtras = true;
+      extraPackages = haskellPackages: [
+        haskellPackages.xmobar
+      ];
+    };
   };
 
   # Configure keymap in X11
@@ -84,6 +91,7 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
     cachix
+    haskellPackages.xmobar
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
