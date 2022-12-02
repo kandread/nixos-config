@@ -5,7 +5,7 @@
   home = {
     username = "kandread";
     homeDirectory = "/home/kandread";
-    stateVersion = "22.05";
+    stateVersion = "22.11";
   };
 
   imports = [
@@ -14,6 +14,7 @@
     ./emacs.nix
     ./shells.nix
     ./email.nix
+    ./julia.nix
     ./theming.nix
   ];
 

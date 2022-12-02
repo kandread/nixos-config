@@ -13,7 +13,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.05";
+    nixpkgs.url = "nixpkgs/nixos-22.11";
 
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     
@@ -26,7 +26,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -70,10 +70,10 @@
         };
       };
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
-        inherit system username pkgs;
-        configuration = import ./user/home.nix;
-        homeDirectory = "/home/${username}";
-        stateVersion = "22.05";
+        inherit pkgs;
+        modules = [
+          ./user/home.nix
+        ];
       };
     };
 }
