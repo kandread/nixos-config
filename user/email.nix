@@ -15,7 +15,7 @@
       sent_tag = sent
       [FolderNameFilter]
       maildir_separator = /
-      folder_transforms = Trash:deleted Junk:spam Drafts:draft Archive:archived Sent:sent      
+      folder_transforms = Trash:deleted Junk:spam Drafts:draft Archive:archived Sent:sent Inbox:inbox
       [Filter.1]
       query = 'to:andreadis.jhm@ametsoc.org'
       tags = +jhm
