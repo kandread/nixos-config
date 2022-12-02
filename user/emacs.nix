@@ -3,7 +3,7 @@
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacsPgtkNativeComp;
+    package = pkgs.emacsGitNativeComp;
     extraPackages = epkgs: with epkgs; [
       vterm
     ];
