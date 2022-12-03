@@ -6,12 +6,14 @@ with lib;
 let
   cfg = config.services.xserver.windowManager;
   stumpwm = pkgs.lispPackages.stumpwm.overrideAttrs (_: {
-    version = "20220523";
+    version = "22.11";
+    asdFilesToKeep = ["stumpwm.asd" "dynamic-mixins/dynamic-mixins.asd"];
+    dontPatchShebangs = 1;
     src = pkgs.fetchFromGitHub {
       owner = "stumpwm";
       repo = "stumpwm";
-      rev = "09685fcddc32befcf7a0fbe38df9b0613fc4539b";
-      sha256 = "sha256-Vtn+unRdr3ib3ssjJcKy6P/M50VOo7197BF4fis4Doo=";
+      rev = "fff2508fd54b4035b0d80bafbd75a13f1756130f";
+      sha256 = "sha256-zXj17ucgyFhv7P0qEr4cYSVRPGrL1KEIofXWN2trr/M=";
     };
   });
   stumpwm-wrapper = (

@@ -31,7 +31,7 @@
   # Enable Window Managers.
   services.xserver.windowManager = {
     # stumpwm is broken for 22.11
-    stumpwm-wrapper.enable = false;
+    stumpwm-wrapper.enable = true;
     xmonad = {
       enable = true;
       enableContribAndExtras = true;
