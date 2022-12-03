@@ -29,6 +29,7 @@
     imagemagick
     obs-studio
     pulsemixer
+    pamixer
 
     # Utilities
     gnupg
@@ -52,6 +53,7 @@
     automake
     autoconf
     gnumake
+    direnv
 
     # Fonts
     nerdfonts
