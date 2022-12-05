@@ -41,7 +41,7 @@
         user = "ubuntu";
       };
       matchBlocks.picore = {
-        hostname = "192.168.1.12";
+        hostname = "192.168.1.3";
         user = "tc";
       };
       matchBlocks.amdgland = {
