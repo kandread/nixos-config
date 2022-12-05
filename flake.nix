@@ -25,13 +25,18 @@
       url = "github:nix-community/emacs-overlay?rev=aa91ccd60349c0361ab920fcfe2602bf894edf6d";
     };
 
+    darwin = {
+      url = "github:lnl7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, unstable, emacs, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, unstable, emacs, agenix, darwin, ... }@inputs:
 
     let
       system = "x86_64-linux";
@@ -68,6 +73,11 @@
             ./hosts/thingland
           ];
         };
+      };
+      darwinConfigurations."macgland" = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = [ 
+            ./hosts/macgland ]; 
       };
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
