@@ -54,6 +54,7 @@
     autoconf
     gnumake
     direnv
+    tree-sitter
 
     # Fonts
     nerdfonts
