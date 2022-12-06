@@ -53,7 +53,6 @@
     automake
     autoconf
     gnumake
-    direnv
     tree-sitter
 
     # Fonts
