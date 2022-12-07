@@ -60,4 +60,33 @@
       nix-direnv.enable = true;
     };
 
+    programs.tmux = {
+      enable = true;
+      baseIndex = 1;
+      sensibleOnTop = true;
+      clock24 = true;
+      disableConfirmationPrompt = true;
+      historyLimit = 10000;
+      customPaneNavigationAndResize = true;
+      escapeTime = 0;
+      shortcut = "b";
+      extraConfig = ''
+      set -g set-titles on
+      set -g default-command "${pkgs.fish}/bin/fish"
+      '';
+      plugins = with pkgs.tmuxPlugins; [
+        cpu
+        yank
+        jump
+        dracula
+        {
+          plugin = continuum;
+          extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-save-interval '60' # minutes
+        '';
+        }
+      ];
+    };
+
 }
