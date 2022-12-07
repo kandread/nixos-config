@@ -3,7 +3,7 @@
   home.packages = with pkgs; [
     # Editors
     vim
-    
+
     # Writing
     (aspellWithDicts (dicts: with dicts; [ en en-computers en-science ]))
     libreoffice-fresh
@@ -13,7 +13,7 @@
     # Web
     brave
     unstable.firefox
-    
+
     # Communication
     zoom-us
     unstable.mattermost-desktop
@@ -23,6 +23,7 @@
 
     # Science
     netcdf
+    qgis
 
     # Multimedia
     feh

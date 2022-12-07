@@ -16,11 +16,11 @@
     nixpkgs.url = "nixpkgs/nixos-22.11";
 
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    
+
     nixos-hardware.url = github:nixos/nixos-hardware/master;
 
     agenix.url = "github:ryantm/agenix";
-    
+
     emacs = {
       url = "github:nix-community/emacs-overlay?rev=aa91ccd60349c0361ab920fcfe2602bf894edf6d";
     };
@@ -41,6 +41,9 @@
         inherit system;
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = [
+            "qtwebkit-5.212.0-alpha4"
+          ];
         };
         overlays = [
           (import ./overlays { unstable = unstable; })
