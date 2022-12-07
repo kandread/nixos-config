@@ -73,6 +73,15 @@
       extraConfig = ''
       set -g set-titles on
       set -g default-command "${pkgs.fish}/bin/fish"
+      bind | split-window -h
+      bind - split-window -v
+      unbind '"'
+      unbind %
+      bind -n M-Left select-pane -L
+      bind -n M-Right select-pane -R
+      bind -n M-Up select-pane -U
+      bind -n M-Down select-pane -D
+      set-window-option -g automatic-rename
       '';
       plugins = with pkgs.tmuxPlugins; [
         cpu
@@ -84,15 +93,6 @@
           extraConfig = ''
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '60' # minutes
-          bind | split-window -h
-          bind - split-window -v
-          unbind '"'
-          unbind %
-          bind -n M-Left select-pane -L
-          bind -n M-Right select-pane -R
-          bind -n M-Up select-pane -U
-          bind -n M-Down select-pane -D
-          set-window-option -g automatic-rename
         '';
         }
       ];
