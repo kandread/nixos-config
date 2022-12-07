@@ -69,7 +69,7 @@
       historyLimit = 10000;
       customPaneNavigationAndResize = true;
       escapeTime = 0;
-      shortcut = "b";
+      prefix = "Escape";
       extraConfig = ''
       set -g set-titles on
       set -g default-command "${pkgs.fish}/bin/fish"
