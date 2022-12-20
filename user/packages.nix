@@ -9,10 +9,14 @@
     libreoffice-fresh
     pandoc
     texlive.combined.scheme-full
+    zotero
+    obsidian
+    xournalpp
 
     # Web
     brave
     unstable.firefox
+    qutebrowser
 
     # Communication
     zoom-us
