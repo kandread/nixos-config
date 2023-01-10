@@ -12,6 +12,7 @@
     zotero
     obsidian
     xournalpp
+    texlab
 
     # Web
     brave
