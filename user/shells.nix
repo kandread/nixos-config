@@ -35,7 +35,7 @@
     theme = "Ayu";
     font = {
       name = "Roboto Nerd Mono";
-      size = 14;
+      size = 16;
     };
     settings = {
       scrollback_lines = 10000;
