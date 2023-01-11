@@ -16,6 +16,7 @@
     ./email.nix
     ./julia.nix
     ./theming.nix
+    ./desktop.nix
   ];
 
 }
