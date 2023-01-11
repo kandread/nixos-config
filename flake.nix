@@ -71,10 +71,10 @@
             ./hosts/thingland
           ];
         };
-        
+
         theligland = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
-          
+
           modules = [
             agenix.nixosModules.age
             ./hosts/theligland
