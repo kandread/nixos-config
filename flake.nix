@@ -77,7 +77,7 @@
           
           modules = [
             agenix.nixosModules.age
-            ./host/theligland
+            ./hosts/theligland
           ];
         };
       };

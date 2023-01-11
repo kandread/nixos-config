@@ -36,6 +36,10 @@
         hostname = "192.168.1.11";
         user = "kandread";
       };
+      matchBlocks.theligland = {
+        hostname = "192.168.1.19";
+        user = "kandread";
+      };
       matchBlocks.adpc = {
         hostname = "58.137.55.228";
         user = "ubuntu";
