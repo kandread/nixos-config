@@ -71,6 +71,15 @@
             ./hosts/thingland
           ];
         };
+        
+        theligland = nixpkgs.lib.nixosSystem {
+          inherit pkgs system;
+          
+          modules = [
+            agenix.nixosModules.age
+            ./host/theligland
+          ];
+        };
       };
       homeConfigurations.${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
