@@ -40,6 +40,10 @@
         hostname = "192.168.1.19";
         user = "kandread";
       };
+      matchBlocks.workgland = {
+        hostname = "128.119.82.220";
+        user = "kandread";
+      };
       matchBlocks.adpc = {
         hostname = "58.137.55.228";
         user = "ubuntu";
