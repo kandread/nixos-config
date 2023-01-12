@@ -71,7 +71,15 @@
             ./hosts/thingland
           ];
         };
+   workgland = nixpkgs.lib.nixosSystem {
+          inherit pkgs system;
 
+          modules = [
+            # agenix.nixosModules.age
+            ./hosts/workgland
+          ];
+        };
+      
         theligland = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
 
