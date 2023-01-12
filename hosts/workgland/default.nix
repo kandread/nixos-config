@@ -36,4 +36,8 @@
   # Enable flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Install some packages only on this host
+  services.printing.drivers = with pkgs; [
+    cups-toshiba-estudio
+  ];
 }
