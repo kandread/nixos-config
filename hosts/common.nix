@@ -113,7 +113,7 @@
   services.squeezelite = {
     enable = true;
     extraArguments = let
-      lms_ip = "192.168.1.3"; # local IP address for Logitech Media Server
+      lms_ip = "192.168.1.16"; # local IP address for Logitech Media Server
     in
       if (config.networking.hostName == "thingland")
       then

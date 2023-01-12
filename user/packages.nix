@@ -29,6 +29,7 @@
     # Science
     netcdf
     qgis
+    gdal
 
     # Multimedia
     feh
@@ -53,6 +54,9 @@
     xorg.xev
     betterlockscreen
     picom
+
+    # Libraries
+    nodejs
 
     # Development
     gcc
