@@ -28,7 +28,7 @@
 
     # Science
     netcdf
-    qgis
+    # qgis
     gdal
 
     # Multimedia
