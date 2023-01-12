@@ -75,7 +75,7 @@
           inherit pkgs system;
 
           modules = [
-            # agenix.nixosModules.age
+            agenix.nixosModules.age
             ./hosts/workgland
           ];
         };
