@@ -4,10 +4,11 @@ let
   fixJuliaPkgs = pkgs.writeShellScriptBin "fixJuliaPkgs" ''
     PKG_DIR=~/.julia/
 
-    for ARTIFACT in $(find $PKG_DIR/artifacts/*/bin/*) 
+    for ARTIFACT in $(find $PKG_DIR/artifacts/*/bin/*)
     do
       chmod +w $ARTIFACT
       ${pkgs.patchelf}/bin/patchelf --set-interpreter ${pkgs.stdenv.cc.bintools.dynamicLinker} $ARTIFACT 2> /dev/null
+      ${pkgs.patchelf} --set-rpath '/run/opengl-driver/lib' $ARTIFACT 2> /dev/null
       chmod -w $ARTIFACT
     done
     '';

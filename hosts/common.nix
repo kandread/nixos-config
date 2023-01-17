@@ -94,6 +94,7 @@
     wget
     cachix
     haskellPackages.xmobar
+    cudaPackages.cudatoolkit
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
