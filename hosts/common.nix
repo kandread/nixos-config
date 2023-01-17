@@ -140,10 +140,13 @@
     [mattermost]
     DefaultServer = "hydroumass.cloud.mattermost.com"
     DefaultTeam = "main"
-    PrefixContext = true
+    PrefixContext = false
+    SuffixContext = true
+    ThreadContext = "mattermost"
+    ShowContextMulti = true
   ''}";
 
-  # Davmail
+  # DAVMAIL
   systemd.user.services.davmail = {
     description = "Davmail daemon";
     serviceConfig = {
