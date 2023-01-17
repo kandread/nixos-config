@@ -97,6 +97,7 @@
     cudaPackages.cudatoolkit
   ];
 
+  # Set library path for CUDA
   hardware.opengl.setLdLibraryPath = true;
 
   # Some programs need SUID wrappers, can be configured further or are
