@@ -126,7 +126,21 @@
   systemd.services.squeezelite.serviceConfig.ExecStart = let cfg = config.services.squeezelite;
                                                          in lib.mkForce "${pkgs.squeezelite}/bin/squeezelite -n ${config.networking.hostName} ${cfg.extraArguments}";
 
-# Davmail
+  # Matterirc
+  services.mattermost.matterircd = {
+    enable = true;
+  };
+  systemd.services.matterircd.serviceConfig.ExecStart = let
+    cfg = config.services.matterircd;
+  in
+    lib.mkForce "${pkgs.matterircd}/bin/matterircd --conf ${pkgs.writeText "matterircd.toml" ''
+    [mattermost]
+    DefaultServer = "hydroumass.cloud.mattermost.com"
+    DefaultTeam = "main"
+    PrefixContext = true
+  ''}";
+
+  # Davmail
   systemd.user.services.davmail = {
     description = "Davmail daemon";
     serviceConfig = {
