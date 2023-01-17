@@ -22,6 +22,7 @@
     # Communication
     zoom-us
     unstable.mattermost-desktop
+    matterircd
 
     # Shells
     any-nix-shell
