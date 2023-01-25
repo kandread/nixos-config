@@ -121,7 +121,8 @@
     in
       if (config.networking.hostName == "thingland")
       then
-        "-o front:CARD=TA10R,DEV=0 -s ${lms_ip}"
+        # "-o front:CARD=TA10R,DEV=0 -s ${lms_ip}"
+          "-o front:CARD=Audio,DEV=0 -s ${lms_ip}"
       else
         "-o sysdefault:CARD=Generic_1 -s ${lms_ip}";
      };
@@ -140,7 +141,7 @@
     [mattermost]
     DefaultServer = "hydroumass.cloud.mattermost.com"
     DefaultTeam = "main"
-    JoinExclude = ["#.*"]
+    # JoinExclude = ["#.*"]
     PrefixContext = false
     SuffixContext = true
     ThreadContext = "mattermost"
