@@ -1,10 +1,12 @@
 { config, pkgs, ... }:
 
 {
- 
+
   programs = {
     mbsync.enable = true;
+    offlineimap.enable = false;
     msmtp.enable = true;
+    mu.enable = true;
     afew = {
       enable = true;
       extraConfig = ''
@@ -81,6 +83,21 @@
       };
       maildir.path = "umass";
       notmuch.enable = true;
+      mu.enable = true;
+      offlineimap = {
+        enable = false;
+        extraConfig = {
+          account = {
+            maxconnections = 16;
+          };
+          local = {
+            sync_deletes = true;
+          };
+          # remote = {
+          #   folderfilter = '' lambda foldername: foldername in ["INBOX" "Sent" "Drafts" ] '';
+          # };
+        };
+      };
       mbsync = {
         enable = true;
         create = "maildir";
@@ -109,5 +126,5 @@
       };
     };
   };
-  
+
 }

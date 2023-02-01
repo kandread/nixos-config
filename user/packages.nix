@@ -23,6 +23,7 @@
     zoom-us
     unstable.mattermost-desktop
     matterircd
+    teams
 
     # Shells
     any-nix-shell
