@@ -120,13 +120,13 @@
     enable = true;
     extraArguments = let
       lms_ip = "192.168.1.16"; # local IP address for Logitech Media Server
+      hostname = config.networking.hostName;
+      devices = { "thingland"="front:CARD=TA10R,DEV=0"; "workgland"="front:CARD=Pro,DEV=0"; };
+      lookup = attrs: key: default:
+        if attrs ? "${key}" then attrs."${key}" else default;
+      device = lookup devices hostname "default";
     in
-      if (config.networking.hostName == "thingland")
-      then
-        # "-o front:CARD=TA10R,DEV=0 -s ${lms_ip}"
-          "-o front:CARD=Audio,DEV=0 -s ${lms_ip}"
-      else
-        "-o sysdefault:CARD=Generic_1 -s ${lms_ip}";
+      " -o ${device} -s ${lms_ip}";
      };
   # Override the need for player name file
   systemd.services.squeezelite.serviceConfig.ExecStart = let cfg = config.services.squeezelite;
