@@ -7,7 +7,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -189,6 +191,14 @@
           params.cleanoutDays = "30";
         };
       };
+    };
+  };
+
+  services.openvpn.servers = {
+    homeVPN = {
+      config = '' config /home/kandread/Downloads/vpn/client.ovpn '';
+      updateResolvConf = true;
+      autoStart = false;
     };
   };
 
