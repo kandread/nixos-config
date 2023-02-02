@@ -18,6 +18,7 @@
     brave
     unstable.firefox
     qutebrowser
+    hugo
 
     # Communication
     zoom-us
@@ -59,6 +60,7 @@
 
     # Libraries
     nodejs
+    go
 
     # Development
     gcc
