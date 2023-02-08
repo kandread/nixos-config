@@ -25,13 +25,18 @@
       url = "github:nix-community/emacs-overlay";
     };
 
+    emacs-src = {
+      url = "github:emacs-mirror/emacs/emacs-29";
+      flake = false;
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, nixos-hardware, home-manager, unstable, emacs, agenix, ... }@inputs:
+  outputs = { self, nixpkgs, nixos-hardware, home-manager, unstable, emacs, emacs-src, agenix, ... }@inputs:
 
     let
       system = "x86_64-linux";
@@ -48,6 +53,14 @@
         overlays = [
           (import ./overlays { unstable = unstable; })
           emacs.overlay
+	  (final : prev: {
+	    emacs29 = prev.emacsGit.overrideAttrs (old : {
+	      name = "emacs29";
+              version = emacs-src.shortRev;
+              src = emacs-src;
+              withPgtk = true;
+	    });
+	  })
         ];
       };
     in {

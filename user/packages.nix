@@ -13,12 +13,17 @@
     obsidian
     xournalpp
     texlab
+    # hunspell
+    # hunspellDicts.en_US-large
 
     # Web
     brave
     unstable.firefox
     qutebrowser
     hugo
+
+    # Viewers
+    qpdfview
 
     # Communication
     zoom-us
