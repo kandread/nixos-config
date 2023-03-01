@@ -1,0 +1,233 @@
+#+title: My XMonad configuration
+#+author: Kostas Andreadis
+#+startup: overview
+#+property: header-args :tangle xmonad.hs
+
+This is my literate XMonad configuration
+* Main
+#+begin_src haskell
+  import XMonad
+
+  import XMonad.Layout.Spacing
+  import XMonad.Layout.Renamed
+  import XMonad.Layout.LayoutModifier
+  import XMonad.Layout.TwoPanePersistent
+
+  import XMonad.Hooks.ManageDocks
+  import XMonad.Hooks.DynamicLog
+  import XMonad.Hooks.EwmhDesktops
+
+  import XMonad.Util.Cursor
+  import XMonad.Util.SpawnOnce
+  import XMonad.Util.Run
+  import XMonad.Util.EZConfig (additionalKeysP)
+
+  import XMonad.Actions.WindowGo
+  import XMonad.Actions.CycleWS
+
+  import XMonad.Prompt
+  import XMonad.Prompt.FuzzyMatch
+  import XMonad.Prompt.Window
+  import XMonad.Prompt.Ssh
+  import XMonad.Prompt.RunOrRaise
+  import XMonad.Prompt.Shell
+
+  import qualified Data.Map as M
+  import qualified Data.List as L
+  import Data.Maybe
+
+  import GHC.IO.Handle
+
+  import qualified XMonad.StackSet as W
+#+end_src
+
+Let's start XMonad with the following block
+#+begin_src haskell
+  main :: IO ()
+  main = do
+    xmproc <- spawnPipe ("xmobar $HOME/.config/xmobar/xmobar-" ++ colorScheme ++ ".hs")
+    xmonad $ docks $ ewmh def
+      { modMask = myModMask
+      , terminal = myTerm
+      , focusedBorderColor = myFocusColor
+      , normalBorderColor = myNormalColor
+      , borderWidth = myBorderWidth
+      , startupHook = myStartupHook
+      , manageHook = myManageHook
+      , layoutHook = avoidStruts myLayouts
+      , workspaces = myWorkspaces
+      , logHook = myLogHook xmproc
+      } `additionalKeysP` myKeys
+#+end_src
+* Keybindings
+  Set some additional custom keybindings
+  #+begin_src haskell
+    myKeys :: [(String, X ())]
+    myKeys =
+      [ ("M-e", runOrRaise "emacs" (className =? "Emacs"))
+      , ("M-<Escape>", spawn lockCommand)
+      , ("M-z", sshPrompt promptConfig)
+      , ("M-'", windowPrompt promptConfig Goto allWindows)
+      , ("M-S-'", windowPrompt promptConfig Bring allWindows)
+      , ("M-C-'", windowPrompt promptConfig Goto wsWindows)
+      , ("M-r", runOrRaisePrompt promptConfig)
+      , ("C-M-r", shellPrompt promptConfig)
+      , ("M-<Backspace>", toggleWS)
+      , ("M-b", raiseBrowser)
+      ]
+      where
+        lockCommand = "betterlockscreen -l blur --off 300"
+  #+end_src
+* Startup
+  Let's start some programs
+  #+begin_src haskell
+    myStartupHook :: X ()
+    myStartupHook = do
+      setDefaultCursor xC_left_ptr
+      spawnOnce "~/.fehbg"
+      spawnOnce "picom"
+      spawnOnce "xrdb -load ~/.Xresources"
+      spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 6 --SetDockType true --SetPartialStrut true --expand true --transparent true --alpha 0 " ++ colorTrayer ++ " --height 32")
+  #+end_src
+* Settings
+  Some general settings and variables
+  #+begin_src haskell
+    myModMask :: KeyMask
+    myModMask = mod4Mask
+
+    myTerm :: String
+    myTerm = "kitty"
+
+    myBorderWidth :: Dimension
+    myBorderWidth = 4
+
+    myFocusColor :: String
+    myFocusColor = color06
+
+    myNormalColor :: String
+    myNormalColor = color01
+
+    myFont :: String
+    myFont = "xft:RobotoMono Nerd Font:size:14:antialias=true:hinting=true"
+  #+end_src
+* Colors
+Set the color scheme
+#+begin_src haskell
+  colorScheme = "tokyo-night"
+
+  colorBack = "#1a1b26"
+  colorFore = "#a9b1d6"
+
+  color01 = "#414868"
+  color02 = "#f7768e"
+  color03 = "#9ece6a"
+  color04 = "#ff9e64"
+  color05 = "#7dcfff"
+  color06 = "#bb9af7"
+  color07 = "#2ac3de"
+  color08 = "#24283b"
+  color09 = "#5b6268"
+  color10 = "#2ac3de"
+  color11 = "#e0af68"
+  color12 = "#7aa2f7"
+  color13 = "#9aa5ce"
+  color14 = "#73daca"
+  color15 = "#b4f9f8"
+  color16 = "#a9b1d6"
+
+  colorTrayer :: String
+  colorTrayer = "--tint 0x1a1b26"
+#+end_src
+* Workspaces
+  Create some default workspaces
+  #+begin_src haskell
+    myWorkspaces :: [String]
+    myWorkspaces = [ "\xf121", "\xfa9e", "\xf120", "\xf973", "\xf7db", "\xf53e", "\xf03d", "\xf03e", "\xf086", "\xf02b"]
+
+    myWorkspaceIndices = M.fromList $ zipWith (,) myWorkspaces [1..] -- (,) == \x y -> (x,y)
+
+    clickable ws = "<action=xdotool key super+"++show i++">"++ws++"</action>"
+        where i = fromJust $ M.lookup ws myWorkspaceIndices
+  #+end_src
+* Window rules
+  Set some windows to be floating
+  #+begin_src haskell
+    myManageHook = composeAll
+      [ className =? "zoom" --> doFloat
+      , title =? "Zoom Meeting" --> doFloat
+      , title =? "Picture-in-Picture" --> doFloat
+      , title ~? "Figure" --> doFloat
+      , className =? "gksqt" --> doFloat
+      ]
+  #+end_src
+Create an operator to check if string is contained within a string
+#+begin_src haskell
+  (~?) :: Eq a => Query [a] -> [a] -> Query Bool
+  q ~? x = fmap (x `L.isInfixOf`) q
+#+end_src
+* Bar
+  Define the logging hook
+  #+begin_src haskell
+    myLogHook :: Handle -> X ()
+    myLogHook xmproc = dynamicLogWithPP $ xmobarPP
+      { ppCurrent = xmobarColor color06 ""
+      , ppOutput = \x -> hPutStrLn xmproc x
+      , ppLayout = id
+      , ppTitle = xmobarColor color14 mempty . shorten 60
+      , ppSep =  "<fc=" ++ color09 ++ "> <fn=1>|</fn> </fc>"
+      , ppVisible = xmobarColor color05 ""
+      , ppHidden = xmobarColor color04 "" . wrap ("<fc=" ++ color05 ++ ">") "</fc>" . clickable
+      , ppHiddenNoWindows = xmobarColor "#666666" "" . clickable
+      , ppUrgent = xmobarColor color02 "" . wrap "!" "!"
+      , ppExtras = [windowCount]
+      , ppOrder  = \(ws:l:t:ex) -> ["<fn=4>" ++ ws ++ "</fn>"] ++ ex ++ ["<fc=" ++ color06 ++ ">[" ++ l ++ "]</fc> " ++ t ]
+      }
+  #+end_src
+* Functions
+  Define some additional functionality
+  #+begin_src haskell
+    windowCount :: X (Maybe String)
+    windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+  #+end_src
+* Prompt
+  Configure a prompt to be used instead of ~dmenu~ or ~rofi~
+  #+begin_src haskell
+    promptConfig :: XPConfig
+    promptConfig = def
+      { position = CenteredAt 0.2 0.5
+      , font = myFont
+      , bgColor = color08
+      , fgColor = color13
+      , fgHLight = color07
+      , bgHLight = color09
+      , promptBorderWidth = 0
+      , height = 32
+      -- , maxComplRows = Just 12
+      , maxComplColumns = Just 1
+      , alwaysHighlight = True
+      , historySize = 1000
+      , autoComplete = Nothing
+      , promptKeymap = emacsLikeXPKeymap
+      -- , searchPredicate = isInfixOf `on` map toLower
+      , searchPredicate = fuzzyMatch
+      , sorter = fuzzySort
+      }
+  #+end_src
+* Layouts
+  Manage layouts
+  #+begin_src haskell
+    createSpace :: Integer -> l a -> ModifiedLayout Spacing l a
+    createSpace sp = spacingRaw False (Border sp sp sp sp) True (Border sp sp sp sp) True
+
+    -- Function to rename layouts
+    named :: String -> l a -> ModifiedLayout Rename l a
+    named n = renamed [ Replace n ]
+
+    -- Layouts
+    myLayouts = layoutTall ||| layoutFull ||| layoutDeck
+      where
+        layoutTall = named "Tall" $ createSpace 10 $ Tall 1 (3/100) (1/2)
+        layoutFull = Full
+        layoutDeck = named "Deck" $ createSpace 10 $ TwoPanePersistent Nothing (3/100) (1/2)
+
+  #+end_src
