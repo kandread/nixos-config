@@ -46,6 +46,7 @@
         inherit system;
         config = {
           allowUnfree = true;
+          allowBroken = true;
           permittedInsecurePackages = [
             "qtwebkit-5.212.0-alpha4"
           ];
@@ -53,14 +54,14 @@
         overlays = [
           (import ./overlays { unstable = unstable; })
           emacs.overlay
-	  (final : prev: {
-	    emacs29 = prev.emacsGit.overrideAttrs (old : {
-	      name = "emacs29";
+    (final : prev: {
+      emacs29 = prev.emacsGit.overrideAttrs (old : {
+        name = "emacs29";
               version = emacs-src.shortRev;
               src = emacs-src;
               withPgtk = true;
-	    });
-	  })
+      });
+    })
         ];
       };
     in {
@@ -92,7 +93,7 @@
             ./hosts/workgland
           ];
         };
-      
+
         theligland = nixpkgs.lib.nixosSystem {
           inherit pkgs system;
 
