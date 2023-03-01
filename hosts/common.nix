@@ -146,9 +146,8 @@
     DefaultServer = "hydroumass.cloud.mattermost.com"
     DefaultTeam = "main"
     # JoinExclude = ["#.*"]
-    PrefixContext = false
-    SuffixContext = true
-    ThreadContext = "mattermost"
+    PrefixContext = true
+    SuffixContext = false
     ShowContextMulti = true
   ''}";
 
