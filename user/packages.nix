@@ -29,7 +29,7 @@
     zoom-us
     unstable.mattermost-desktop
     matterircd
-    teams
+    # teams
 
     # Shells
     any-nix-shell
@@ -38,6 +38,9 @@
     netcdf
     # qgis
     gdal
+    grass
+    python3Packages.numpy # for GDAL Python modules
+    python3Packages.wxPython_4_2
 
     # Multimedia
     feh
@@ -45,6 +48,7 @@
     obs-studio
     pulsemixer
     pamixer
+    easyeffects
 
     # Utilities
     gnupg
@@ -62,6 +66,9 @@
     xorg.xev
     betterlockscreen
     picom
+    trayer
+    xkb-switch
+    xdotool
 
     # Libraries
     nodejs
@@ -77,6 +84,10 @@
     # Fonts
     nerdfonts
     symbola
+    noto-fonts
+    noto-fonts-extra
+    noto-fonts-emoji
+    font-awesome
   ];
 
 }
