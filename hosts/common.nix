@@ -119,9 +119,11 @@
   services.squeezelite = {
     enable = true;
     extraArguments = let
-      lms_ip = "192.168.1.16"; # local IP address for Logitech Media Server
+      lms_ip = "192.168.1.11"; # local IP address for Logitech Media Server
       hostname = config.networking.hostName;
-      devices = { "thingland"="front:CARD=TA10R,DEV=0"; "workgland"="front:CARD=Pro,DEV=0"; };
+      devices = { "thingland"="front:CARD=TA10R,DEV=0";
+                  "workgland"="front:CARD=Pro,DEV=0";
+                  "theligland"="front:CARD=DAC,DEV=0"; };
       lookup = attrs: key: default:
         if attrs ? "${key}" then attrs."${key}" else default;
       device = lookup devices hostname "default";

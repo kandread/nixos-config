@@ -49,7 +49,7 @@
         user = "ubuntu";
       };
       matchBlocks.picore = {
-        hostname = "192.168.1.16";
+        hostname = "192.168.1.2";
         user = "tc";
       };
       matchBlocks.amdgland = {
