@@ -7,6 +7,14 @@ self: super: {
     config.allowUnfree = true;
   };
 
+  panoply = super.panoply.overrideAttrs (_: rec {
+    version = "5.2.4";
+    src = super.fetchurl {
+      url = "https://www.giss.nasa.gov/tools/panoply/download/PanoplyJ-${version}.tgz";
+      sha256 = "sha256-w5GzHJdqpBELUd4J4hMhsrSka7Ui2NCCmMMHPm0b74c=";
+    };
+  });
+
   brave = super.brave.overrideAttrs (_: rec {
     version = "1.45.125";
     src = super.fetchurl {

@@ -36,6 +36,7 @@
 
     # Science
     netcdf
+    panoply
     # qgis
     gdal
     grass
